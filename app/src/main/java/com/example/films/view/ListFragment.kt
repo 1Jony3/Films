@@ -42,4 +42,4 @@ class ListFragment : Fragment(), IView {
             interactor!!.getFilmsFromAPI()
         } else recyclerView!!.adapter = interactor!!.presenter.get()
     }
-}//11 с утра в понедельник на ВАСХНиЛ
+}
