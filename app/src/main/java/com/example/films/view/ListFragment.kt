@@ -15,7 +15,7 @@ import com.example.films.presenter.list.FilmListInteractor
 
 class ListFragment : Fragment(), IView {
 
-    private lateinit var interactor: FilmListInteractor
+    private var interactor: FilmListInteractor? = null
     var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +27,8 @@ class ListFragment : Fragment(), IView {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
         (activity as AppCompatActivity).supportActionBar?.let { it.title = "Главная" }
 
+        d("lol", "${interactor}")
         loadData(view)
-
         return view
     }
 
@@ -37,7 +37,9 @@ class ListFragment : Fragment(), IView {
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView!!.layoutManager = layoutManager
 
-        interactor = FilmListInteractor(view, this)
-        interactor.getFilmsFromAPI()//выводит и сохраняет список
+        if (interactor == null) {
+            interactor = FilmListInteractor(view, this)
+            interactor!!.getFilmsFromAPI()
+        } else recyclerView!!.adapter = interactor!!.presenter.get()
     }
-}
+}//11 с утра в понедельник на ВАСХНиЛ

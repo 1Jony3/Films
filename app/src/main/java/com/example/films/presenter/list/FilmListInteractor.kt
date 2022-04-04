@@ -16,6 +16,8 @@ import retrofit2.Response
 
 class FilmListInteractor(private var view: View, private var list: ListFragment) : Interactor {
 
+    lateinit var presenter: ListPresenter
+
     fun getFilmsFromAPI() {
         val thread = Thread {
             try {
@@ -43,8 +45,8 @@ class FilmListInteractor(private var view: View, private var list: ListFragment)
         return Gson().fromJson(films.toString(), object : TypeToken<List<Film?>?>() {}.type)
     }
 
-    override fun setData(filmList: List<Film>) {
-        val presenter = ListPresenter(view, filmList)
+    override fun setData(film: List<Film>) {
+        presenter = ListPresenter(view, film)
 
         list.recyclerView!!.adapter = presenter.get()
     }
