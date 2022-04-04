@@ -45,7 +45,14 @@ class FilmsAdapter(private val onClickListener: OnFilmClickListener, private val
         fun bind(film: Film) {
 
             nameText.text = film.localized_name
-            film.image_url.let { glideManager.load(it).into(image)}
+
+            film.image_url.let {
+                glideManager
+                    .load(it)
+                    .error(R.drawable.not_load)
+                    .placeholder(R.drawable.not_load)
+                    .into(image)
+            }
         }
     }
 

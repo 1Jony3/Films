@@ -28,7 +28,7 @@ class ListFragment : Fragment(), IView {
         (activity as AppCompatActivity).supportActionBar?.let { it.title = "Главная" }
 
         loadData(view)
-        
+
         return view
     }
 
