@@ -5,8 +5,7 @@
     android:weightSum="2"
     android:paddingEnd="16dp"
     android:paddingStart="20dp"
-    android:paddingTop="16dp"
-    >
+    android:paddingTop="16dp">
     <Button
         android:id="@+id/genres_button"
         android:layout_width="0dp"
@@ -15,5 +14,4 @@
         android:fontFamily="sans-serif-condensed"
         android:hint="genres"
         android:textAllCaps="true" />
-
 </LinearLayout>

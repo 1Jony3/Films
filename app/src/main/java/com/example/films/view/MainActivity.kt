@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         d("lol", "MainActivity onCreate")
 
-        showFragment(ListFragment(), "fList")
+        supportFragmentManager.beginTransaction().replace(R.id.main, ListFragment()).commitAllowingStateLoss()
 
     }
 
-    private fun showFragment(fragment: Fragment, f: String) {
-        supportFragmentManager.beginTransaction().replace(R.id.main, fragment).addToBackStack(f).commitAllowingStateLoss()
+    private fun showFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.main, fragment).addToBackStack("fDetails").commitAllowingStateLoss()
     }
 
     fun showDetails(film: Film) {
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar!!.title = film.localized_name
 
-        showFragment(detailsFragment, "fDetails")
+        showFragment(detailsFragment)
     }
 }
 
